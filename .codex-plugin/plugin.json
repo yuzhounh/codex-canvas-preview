@@ -1,0 +1,25 @@
+{
+  "name": "codex-canvas-preview",
+  "version": "0.1.0",
+  "description": "Preview Cursor-style .canvas.tsx artifacts in the Codex browser.",
+  "author": {
+    "name": "Jing Wang"
+  },
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Codex Canvas Preview",
+    "shortDescription": "Open .canvas.tsx files as live previews.",
+    "longDescription": "Builds an isolated local Vite preview with a compatible cursor/canvas runtime, then opens the rendered artifact inside Codex.",
+    "developerName": "Jing Wang",
+    "category": "Developer Tools",
+    "capabilities": [
+      "Interactive",
+      "Local files"
+    ],
+    "defaultPrompt": [
+      "Preview this .canvas.tsx file in Codex.",
+      "Open the Canvas artifact beside this chat.",
+      "Diagnose why this Canvas preview will not render."
+    ]
+  }
+}

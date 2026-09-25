@@ -1,0 +1,4 @@
+interface:
+  display_name: "Canvas Preview"
+  short_description: "Preview .canvas.tsx files inside Codex"
+  default_prompt: "Preview the selected .canvas.tsx file in Codex."
