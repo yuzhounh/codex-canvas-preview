@@ -1,5 +1,7 @@
 # Codex Canvas Preview
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-D4A017.svg)](LICENSE)
+
 Preview Cursor-style `.canvas.tsx` artifacts inside Codex using a local React/Vite compatibility runtime.
 
 Codex can generate Canvas files that import `cursor/canvas`, but those files normally open as source code outside Cursor's native Canvas host. This plugin adds a repeatable workflow that:
@@ -45,7 +47,7 @@ Add this entry to the `plugins` array in `~/.agents/plugins/marketplace.json`:
   "name": "codex-canvas-preview",
   "source": {
     "source": "local",
-    "path": "./plugins/codex-canvas-preview"
+    "path": "C:/Users/YOUR_USERNAME/plugins/codex-canvas-preview"
   },
   "policy": {
     "installation": "AVAILABLE",
@@ -54,6 +56,8 @@ Add this entry to the `plugins` array in `~/.agents/plugins/marketplace.json`:
   "category": "Productivity"
 }
 ```
+
+Replace the example `path` with the absolute path to your clone; the clone command above places it under `$HOME\plugins\codex-canvas-preview`. JSON paths can use forward slashes as shown.
 
 Then install it:
 
@@ -69,19 +73,29 @@ Preview this .canvas.tsx file in Codex.
 
 ## Run the viewer directly
 
+Run the command from the cloned repository directory, replacing the example Canvas path with your file:
+
 ```powershell
 node scripts/preview-canvas.mjs "C:\path\to\example.canvas.tsx"
 ```
 
 The command prints `CANVAS_PREVIEW_URL=http://127.0.0.1:<port>/`. It selects another local port automatically if the default port is busy.
 
+Open that URL in the Codex browser panel or your browser. Keep the terminal running while previewing, and press `Ctrl+C` to stop the server. Use `--port 4174` to request a different starting port.
+
 ## Security model
 
 - The development server binds only to `127.0.0.1`.
 - The preview page blocks external scripts, images, objects, and network connections with a Content Security Policy.
-- Canvas imports are limited to `cursor/canvas` and React.
+- Supported Canvas imports are `cursor/canvas` and React. Import validation is a compatibility check and does not provide complete isolation for untrusted code.
 - Source files are copied into an isolated runtime directory before compilation.
+
+Canvas code executes in a local development runtime. Only preview files you trust.
 
 ## Compatibility
 
 The bundled runtime follows the public `cursor/canvas` component surface available when this project was created. Visual details may differ slightly from Cursor's native renderer. If Cursor adds a new export, add the matching implementation in `assets/runtime/cursor-canvas.tsx`.
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
